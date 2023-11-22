@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include the external stylesheet using url_for -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>PM 2.5 Prediction with Machine Learning</title>
+    <style>
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .portfolio {
+            width: 600px;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .portfolio img {
+            /*width: 500px; /* Set the desired width */
+            height: 350px; /* Set the desired height */
+            max-width: 100%;
+            border-radius: 5px;
+        }
+
+        .name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .description {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body style="background-color: white;">
+    <header>
+        <h1>PM 2.5 Prediction with Machine Learning</h1>
+    </header>
+    <nav>
+        <ul class="menu-bar">
+            <li><a href="/">PM2.5</a></li>
+            <li><a href="/prediction">Prediction</a></li>
+            <li><a href="/ourdata">Our Data</a></li>
+            <li class="{% if current_page == 'aboutus' %}active{% endif %}"><a href="/aboutus">About Us</a></li>
+        </ul>
+    </nav>
+    <section>
+        <div>
+            <p>
+                <h2> Our Portfolio</h2>
+            </p>
+        </div>
+    </section>
+    <section>
+        <div class="portfolio"> 
+            <img src="{{url_for('serve_image', filename='Thongtong.jpg') }}" alt="tt">
+            <!-- <img src="Thongtong.jpg" alt="tt"> -->
+            <div class="name">Thongtong Eamsaard</div>
+            <div class="description">
+                st123300<br>
+                Department of Industrial System Engineering<br>
+                Asian Institute of Technology <br>
+                Pathum Thani, Thailand <br>
+                st123300@ait.asia<br>
+                <a href="https://github.com/BaiPorAndFern/CP_pm2.5_prediction" style="color: black;">Project Github Repository</a>
+            </div>
+        </div>
+
+        <div class="portfolio">
+            <!-- <img src="KyiThinNu.jpg" alt="ktn"> -->
+            <img src="{{ url_for('serve_image', filename='KyiThinNu.jpg') }}" alt="ktn">
+            <div class="name">Kyi Thin Nu</div>
+            <div class="description">
+                st124087<br>
+                Department of Data Sciences and Artificial Intelligence<br>
+                Asian Institute of Technology <br>
+                Pathum Thani, Thailand <br>
+                st124087@ait.asia<br>
+                <a href="https://github.com/Kyi1914/ait_2023_CPDSAI/tree/main/group7-PM2.5Project" style="color: black;">Project Github Repository</a>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Footer section -->
+    <footer class = "footer">
+        &copy; 2023 CP for DSAI Class Asian Institute of Technology. All rights reserved.
+    </footer>
+    
+</body>
+</html>

@@ -1,0 +1,114 @@
+/* style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0px;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+/* main header */
+header {
+    background-color: #08454c;
+    color: #fff;
+    text-align: center;
+    padding: 30px 0px 20px 0px;
+}
+
+/* for heading 2 -- in the middle */
+.hsub {
+    color: #444;
+    padding: 30px 0px;
+    text-align: center;
+}
+
+/* menu bar */
+nav {
+    background-color: #115e67;
+    text-align: center;
+    /* position: fixed; */
+}
+
+ul.menu-bar {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul.menu-bar li {
+    display: inline;
+    margin: 0 15px;
+    line-height: 40px;
+}
+
+ul.menu-bar li.active {
+    background-color: #FFD700;
+    height: 40px;
+    /* width: 50px; */
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.sub-title {
+    font-style: italic;
+    text-align: center;
+}
+
+/* Style for paragraphs with class "p-text" */
+.p-text {
+    text-align: justify;
+    padding: 10px 40px;
+}
+
+.p-li {
+    text-align: justify;
+    padding: 0 40px;
+}
+
+/* ol {
+    margin: 30px 30px;
+} */
+
+.ol-li-p-text {
+    text-align: justify;
+    padding-right: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+}
+
+#submitBtn {
+    background-color: #08454c;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#submitBtn:hover {
+    background-color: #033944;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 24px;
+}

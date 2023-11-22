@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM 2.5 Prediction with Machine Learning</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include the external stylesheet using url_for -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Flexbox styles for horizontal sections */
+        .flex-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .flex-item {
+            width: 48%;
+            /* Adjust as needed */
+            margin: 10px;
+            padding: 10px;
+            /* border: 1px solid #ddd; */
+            /* border-radius: 5px; */
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+            /* background-color: #fff; */
+        }
+
+        .image-container figcaption {
+            position: absolute;
+            bottom: 0;
+            /* Position at the bottom of the container */
+            width: 100%;
+            /* Take up the full width */
+            background-color: rgba(255, 255, 255, 0.7);
+            /* Semi-transparent white background */
+            padding: 10px;
+            /* Add padding for better visibility */
+        }
+
+        /* Add this CSS for flexbox styling */
+        .flex-container-3 {
+            display: flex;
+            justify-content: space-around;
+            /* Adjust as needed */
+        }
+
+        .flex-item-3 {
+            width: 32%;
+            margin: 10px;
+            padding: 10px;
+            text-align: justify;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            /* Adjust as needed */
+        }
+
+        /* Add this CSS for flexbox styling */
+        /* .flex-container-4 {
+            display: flex;
+            justify-content: space-around;
+            /* Adjust as needed 
+        } */
+
+        .flex-item-4 {
+            width: 24%;
+            margin: 10px 5px;
+            padding: 10px;
+            text-align: justify;
+            /* border: 1px solid #ddd; */
+            /* border-radius: 5px; */
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+            /* background-color: #fff; */
+            /* Adjust as needed  */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>PM 2.5 Prediction with Machine Learning</h1>
+    </header>
+    <nav>
+        <ul class="menu-bar">
+            <li><a href="/">PM2.5</a></li>
+            <li><a href="/prediction">Prediction</a></li>
+            <li class="{% if current_page == 'ourdata' %}active{% endif %}"><a href="/ourdata">Our Data</a></li>
+            <li><a href="/aboutus">About Us</a></li>
+        </ul>
+    </nav>
+    <!-- our data -->
+    <div>
+        <!-- Our Dataset -->
+        <div>
+            <p-header>
+                <h2 class="hsub"> Our Datasets</h2>
+            </p-header>
+            <div class="flex-container">
+                <div class="flex-item">
+                    <div>
+                        <p class="p-text">
+                        <h4> Our Dataset </h4>
+                        The data set contains a record of PM2.5 per hour recorded in 2019 from 5 stations distributed in
+                        Bangkok. In total, 5 stations’ data set for this project are given by Dr. Chantri via the
+                        Pollution
+                        Control Department of Thailand. The station are numbered as follows (5 from all 66 stations
+                        established in 2019)
+                        <ul>
+                            <li>Station 03: Bang Khun Thian, Bangkok</li>
+                            <li>Station 50: Pathum Wan, Bangkok</li>
+                            <li>Station 52: Thonburi, Bangkok</li>
+                            <li>Station 53: Chok Chai, Bangkok</li>
+                            <li>Station 54: Din Daeng, Bangkok</li>
+                        </ul>
+                        The data set is in EXCEL spread sheet format.
+                        </p>
+                        <p>
+                        <h4> Features </h4>
+                        The dataset contains following features:
+                        <ul>
+                            <li>Date and time of record</li>
+                            <li>Various air quality parameters (CO, NO, NO2, NOX, O3,
+                                PM10, PM2.5)</li>
+                            <li>Meteorological data (wind speed, wind direction, temper-
+                                ature)</li>
+                        </ul>
+                        </p>
+                    </div>
+                </div>
+                <!-- Section B: Features -->
+                <div class="flex-item"> 
+                    <div>
+                    <!-- Google Map -->
+                    <iframe width="600" height="450" frameborder="0" style="border: 0"
+                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAt-YehxQSD-ukAK2WeMji0XKxYBJwtPQQ&q=Your+Location"
+                        allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div> <!-- Our dataset Part -->
+
+            <!-- Data Canva -->
+            <div style="background-color: yellow;">
+                <!-- <div style = "background-color: yellow;"> -->
+                <p-header>
+                    <h2 class="hsub"> Data Canvas </h2>
+                </p-header>
+                <!-- </div> -->
+                <!-- <div class="image-container"> -->
+                <div style="text-align: center">
+                    <figure>
+                        <img src="static/Data Science Project Canvas_PM25.png" alt="Methodology Image" width="800"
+                            height="500">
+                        <figcaption>Figure 1: Data Canvas for PM2.5 Project</figcaption>
+                    </figure>
+                </div>
+                <div>
+                    <p>
+                        <hr style="color: yellow; height: 2px; visibility: hidden;">
+                        <hr style="color:yellow;">
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <!-- Methodology -->
+            <p-header>
+                <h2 class="hsub">Methodology</h2>
+            </p-header>
+            <div>
+                <p class="p-text">
+                    To begin with, this project use scikit-learn [5] packages as
+                    it is simple and efficient tools for predictive data analysis.
+                    Next, we received data set, cleaned data, explored some data
+                    insights, pre-processed, selected the model, trained the model,
+                    evaluation, and deployed into simple website in AWS platform
+                    to demonstrate our powerful PM2.5 prediction.
+                </p>
+            </div>
+            <!-- 3 para in one row : Text 1-->
+            <div class="flex-container-3">
+                <!-- Paragraph 1 -->
+                <div class="flex-item-3">
+                    <p class="p-text">
+                    <h4> A. Data Acquisition </h4>
+                    To obtain the data set, Professor Chantri received the data
+                    set for us. These data sets came from the Pollution Control
+                    Department of Thailand (PCD). Generally, the data are
+                    recorded daily for public use. However, we can ask PCD for
+                    more details hourly records.
+                    The original filename are in Thai. For better communicate
+                    between groups, we agreed to change into more accessible
+                    file names in English. We then imported the data set from each station,
+                    and stored in variables station03, station50, station52, station53, and
+                    station54, respectively.
+                    </p>
+                </div>
+
+                <!-- Paragraph 2 -->
+                <div class="flex-item-3">
+                    <p class="p-text">
+                    <h4> B. Clean Data </h4>
+                    As the original data were not generalized well and were re-
+                    ally messy, we needed some cleaning process before analyzed
+                    with Exploratory Data Analysis in V-C.
+                    he process include here are:
+                    <ul>
+                        <li>Dropped second level headers</li>
+                        <li>Renamed column names</li>
+                        <li>Added Province and District columns</li>
+                        <li>Merged all fives stations into single DataFrame</li>
+                        <li>Merged Date and Time columns and converged into Timestamp (datetime formatting) </li>
+                        <li>Reordered the columns</li>
+                        <li>Checked and edited data types of columns (dtypes)</li>
+                        <li>Replaced string values in numerical columns</li>
+                    </ul>
+                    </p>
+                </div>
+
+                <!-- Paragraph 3 -->
+                <div class="flex-item-3">
+                    <p class="p-text">
+                    <h4> C. Exploratory Data Analysis (EDA) </h4>
+                    For this task, we just exploring the data to see if there
+                    are potential problems in the data set (outliers, mislabeled
+                    data, unwanted correlations between variables/samples, etc.).
+                    However, no actual work done in here. The steps includes
+                    identifying missing values and deciding how to handle them,
+                    whether by imputing missing values, removing rows with
+                    missing values, or using other strategies.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 4 para in one row : EDA 1 -->
+            <div>
+                <h4 class="hsub" style="background-color: aqua;"> Univariate Analysis </h4>
+            </div>
+            <div class="flex-container">
+                <!-- Paragraph 1 -->
+                <div class="flex-item-4">
+                    <figure>
+                        <img src="static/dailyPM_all.png" alt="dailyPM_all" width="350" height="250">
+                        <figcaption></figcaption>
+                    </figure>
+                </div>
+                <!-- Paragraph 2 -->
+                <div class="flex-item-4">
+                    <p class="p-text">
+                        In the figure of Average PM2.5 daily in all 5 stations, it can be
+                        seen that PM2.5 is quite high in the first two months. Then it
+                        drops dramatically at each its lowest on September. Then, it
+                        starts rising again up until the end of December.
+                    </p>
+                </div>
+                <!-- Paragraph 3 -->
+                <div class="flex-item-4">
+                    <figure>
+                        <img src="static/pm25_hist_all.png" alt="pm25_hist_all" width="350" height="250">
+                        <figcaption></figcaption>
+                    </figure>
+                </div>
+                <!-- Paragraph 4 -->
+                <div class="flex-item-4">
+                    <p class="p-text">
+                        In the histogram plot of the distribution of
+                        PM2.5, it normal range is from between 15 to 35
+                        most of the times.
+                    </p>
+                </div>
+            </div>
+            <!-- close 4 para in one row : EDA 1 -->
+            <!-- 4 para in one row : EDA 2 -->
+            <div class="flex-container">
+                <!-- Paragraph 1 -->
+                <div class="flex-item-4">
+                    <p>
+                        We compared PM2.5 from each station and do some
+                        kernel density estimate (kde) distribution in this two figures.
+                        Since all stations are relatively in the same
+                        province, Bangkok, PM2.5 values should be in the same
+                        trends most of the time.
+
+                    </p>
+                </div>
+                <!-- Paragraph 2 -->
+                <div class="flex-item-4">
+                    <figure>
+                        <img src="static/dailyPM_each_sta.png" alt="dailyPM_each_sta" width="350" height="250">
+                        <figcaption></figcaption>
+                    </figure>
+                </div>
+                <!-- Paragraph 3 -->
+                <div class="flex-item-4">
+                    <p>
+                        However in kde plot, it shows that stations has 2 different distributions of
+                        the PM2.5 values. Showing that the kde distribution of Bang
+                        Khun Thian is similar with Din Daeng. The other group is
+                        Chok Chai, Pathum Wan, and Thonbur
+                    </p>
+                </div>
+                <!-- Paragraph 4 -->
+                <div class="flex-item-4">
+                    <figure>
+                        <img src="static/dailyPM_each_sta_kde.png" alt="dailyPM_each_sta_kde" width="350" height="250">
+                        <figcaption></figcaption>
+                    </figure>
+                </div>
+            </div>
+            <!-- close 4 para in one row : EDA 2 -->
+            <!-- 4 para in one row : EDA 3 multivariate 1 -->
+            <div>
+                <h4 class="hsub" style="background-color: aqua;"> Multivariate Analysis </h4>
+            </div>
+            <div class="flex-container">
+                <!-- Paragraph 1 -->
+                <div class="flex-item-4">
+                    <figure>
+                        <img src="static/pm25_pm10_CO.png" alt="pm25_pm10_CO" width="350" height="250">
+                        <figcaption></figcaption>
+                    </figure>
+                </div>
+                <!-- Paragraph 2 -->
+                <div class="flex-item-4">
+                    <p>
+                        Scatter plot we can see more
+                        insight between PM2.5 and PM10 of that predictor.
+                        As predicted, it shows that PM2.5 strongly related to PM10.
+                        Furthermore, if these two are high, CO value will also be high
+                        too.
+                    </p>
+                </div>
+                <!-- Paragraph 3 -->
+                <div class="flex-item-4">
+                    <figure>
+                        <img src="static/scatter_pm_eachSTA.png" alt="scatter_pm_eachSTA" width="350" height="250">
+                        <figcaption></figcaption>
+                    </figure>
+                </div>
+                <!-- Paragraph 4 -->
+                <div class="flex-item-4">
+                    <p>
+                        In this figure, even though not clearly see at first,
+                        if N O2 increases, it tends to increase the minimum PM2.5
+                        value boundary. This indicates that N O2 has some effects to
+                        PM2.5.
+                    </p>
+                </div>
+            </div>
+            <!-- close 4 para in one row : EDA 3 multivariance : 1-->
+            <!-- 2 para in one row : EDA 4 multivariance : 2-->
+            <div class="flex-container">
+                <div class="flex-item">
+                    <p class="p-text">
+                        <!-- correlation heatmap -->
+                        In the correlation heat map plot,
+                        it can be seen that CO, NO, NO2, NOX, SO2, and PM10
+                        have potential to be the predictor for PM2.5 as target variable.
+                    </p>
+                    <figure>
+                        <img src="static/correlation.png" alt="correlation" width="600" height="370">
+                        <figcaption></figcaption>
+                    </figure>
+                </div>
+                <div class="flex-item">
+                    <p class="p-text">
+                        <!-- pps score -->
+                        The predictive power score (PPS),
+                        which calculate how strong each predictor, states that only NO2
+                        and PM10 has some predictive power for PM2.5.
+                    </p>
+                    <figure>
+                        <img src="static/power-score_v2.png" alt="power-score_v2" width="600" height="370">
+                        <figcaption></figcaption>
+                    </figure>
+                </div>
+            </div>
+            <!-- close 2 para in one row : EDA 4 multivariance : 2-->
+            <!-- 2 para in one row : EDA 5 multivariance : 3-->
+            <div class="flex-container">
+                <div class="flex-item">
+                    <p class="p-text">
+                        <!-- violin plot -->
+                        the violin plot to see the distribution, outliers, mean, and
+                        minimum and maximum range for each numerical variables
+                        as shown in Fig. 19. We see that most of all variables are
+                        not normal distribution, but we need to confirmed again with
+                        the probability plot before we decide to use what method for
+                        scaling.
+                    </p>
+
+                </div>
+                <div class="flex-item">
+                    <figure>
+                        <img src="static/violin_plot_all.png" alt="violin_plot_all" width="600" height="100%">
+                        <figcaption></figcaption>
+                    </figure>
+                </div>
+            </div>
+            <!-- close 2 para in one row : EDA 5 multivariance : 3-->
+            <!-- 2 para in one row : EDA 6 multivariance : 4-->
+            <div class="flex-container">
+                <div class="flex-item">
+                    <figure>
+                        <img src="static/wind_speed_PM.png" alt="wind_speed_PM" width="600" height="100%">
+                        <figcaption></figcaption>
+                    </figure>
+                </div>
+                <div class="flex-item">
+                    <p class="p-text">
+                        <!-- wind speed/dir test-->
+                        Wind direction and wind speed is somewhat contribute to PM2.5.
+                        In additions,
+                        it can also show that most of the time, where wind are coming
+                        from which direction.
+                    </p>
+                </div>
+            </div>
+            <!-- close 2 para in one row : EDA 6 multivariance : 4-->
+            <!-- 3 para in one row: D, E, F -->
+            <div>
+                <p class="p-text">
+                    After explored what our data set looks like, we did pre-
+                    processing, modelling and training process.
+                </p>
+            </div>
+            <!-- 3 para in one row : Text 1: Preprocessing-->
+            <div class="flex-container-3">
+                <!-- Paragraph D -->
+                <div class="flex-item-3">
+                    <p class="p-text">
+                    <h4> D. Data Preprocessing </h4>
+                    In Data Preprocessing task, we implement the followings:
+                    <ul>
+                        <li> Remove Unnecessary Columns </li>
+                        <li> Train-test Split </li>
+                        <li> Replace missing values (Imputation) </li>
+                        <li> Scaling </li>
+                        <li> Encoding </li>
+                        <li> Creating Preprocess Pipeline </li>
+                    </ul>
+                    </p>
+                </div>
+
+                <!-- Paragraph 2 -->
+                <div class="flex-item-3">
+                    <p class="p-text">
+                    <h4> E. Modelling </h4>
+                    The followings are the list of model we use:
+                    <ul>
+                        <li>Linear Regression</li>
+                        <li>Ridge Regression</li>
+                        <li>Lasso Regression</li>
+                        <li>Gradient Boosting Regression</li>
+                        <li>Histogram-based Gradient Boosting Regression Tree </li>
+                        <li>Support Vector Regression (SVR)</li>
+                        <li>K Neighbor Regression</li>
+                        <li>Decision Tree Regression</li>
+                        <li>Random Forest Regression</li>
+                        <li>AdaBoost Regression</li>
+                    </ul>
+                    To select the best model for this purpose, we did k-folds
+                    cross validation with k = 5. After we got the best model,
+                    we did grid search with cross-validation for finding the best
+                    hyper-parameters for that model with k-folds k = 10
+                    </p>
+                </div>
+
+                <!-- Paragraph 3 -->
+                <div class="flex-item-3">
+                    <p class="p-text">
+                    <h4> F. Training </h4>
+                    Training will be done by the scikit-learn .fit method. We
+                    trained the best model with best hyper-parameters with all
+                    training set, unlike in cross-validation that some parts of
+                    training set were separated to validation set.
+                    </p>
+                </div>
+            </div>
+            <!--closed 3 para in one row: D,E,F  -->
+            <!-- 4 para in one row : D,E,F -->
+            <!-- <div>
+                <h4 class="hsub" style="background-color: aqua;"> Univariate Analysis </h4>
+            </div> -->
+            <div class="flex-container">
+                <!-- Paragraph 1 -->
+                <div class="flex-item-4">
+                    <figure>
+                        <img src="static/train_test_split_checkSTA.png" alt="train_test_split_checkSTA" width="350"
+                            height="250">
+                        <figcaption></figcaption>
+                    </figure>
+                </div>
+                <!-- Paragraph 2 -->
+                <div class="flex-item-4">
+                    <p class="p-text">
+                        We split data set into train and test set
+                        with test ratio of 0.2 with fixed random state. In order to make
+                        train and test set has the same data from each station equally,
+                        we defined stratify by District column. We checked that train
+                        set are equally distributed on Distric
+                    </p>
+                </div>
+                <!-- Paragraph 3 -->
+                <div class="flex-item-4">
+                    <figure>
+                        <img src="static/pm25_hist_all.png" alt="pm25_hist_all" width="350" height="250">
+                        <figcaption></figcaption>
+                    </figure>
+                </div>
+                <!-- Paragraph 4 -->
+                <div class="flex-item-4">
+                    <p class="p-text">
+                        In the histogram plot of the distribution of
+                        PM2.5, it normal range is from between 15 to 35
+                        most of the times.
+                    </p>
+                </div>
+            </div>
+            <!-- close 4 para in one row : D,E,F -->
+
+        </div>
+
+        <!-- Google Map -->
+        <!-- <div>
+            <iframe width="600" height="450" frameborder="0" style="border: 0"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAt-YehxQSD-ukAK2WeMji0XKxYBJwtPQQ&q=Your+Location"
+                allowfullscreen></iframe>
+        </div> -->
+    </div>
+
+    <!-- Footer section -->
+    <footer style="background-color: #333; color: #fff; text-align: center; padding: 10px;">
+        &copy; 2023 CP for DSAI Class Asian Institute of Technology. All rights reserved.
+    </footer>
+
+</body>
+
+</html>

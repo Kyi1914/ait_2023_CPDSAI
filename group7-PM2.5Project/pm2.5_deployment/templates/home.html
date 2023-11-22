@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM 2.5 Prediction with Machine Learning</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include the external stylesheet using url_for -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        #importance-of-pm25 {
+            background-color: #edf8f6eb;
+            padding-bottom: 10px;
+            /* Add any additional styling as needed */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>PM 2.5 Prediction with Machine Learning</h1>
+    </header>
+    <nav>
+        <ul class="menu-bar">
+            <li><a href="#">PM2.5</a></li>
+            <li><a href="/prediction">Prediction</a></li>
+            <li><a href="/ourdata">Our Data</a></li>
+            <li><a href="/aboutus">About Us</a></li>
+        </ul>
+    </nav>
+    <!-- what is pm2.5 -->
+    <div id="what_is_pm2.5">
+        <p-header>
+            <h2 class="hsub">What is PM2.5?</h2>
+        </p-header>
+        <div>
+            <p class="p-text">
+                <span class="sub-title">A. Introduction to PM2.5</span><br>
+                PM2.5, or Particulate Matter 2.5, is a critical measure of air
+                quality that refers to tiny airborne particles or droplets with
+                a diameter of 2.5 micrometers or smaller. These minuscule
+                particles can originate from a variety of sources, including
+                industrial emissions, vehicle exhaust, construction activities,
+                natural dust, and even chemical reactions in the atmosphere.
+                PM2.5 is significant because it has a substantial impact on
+                both human health and the environment. Understanding PM2.5
+                levels is essential for assessing air quality, making informed
+                policy decisions, and implementing measures to safeguard
+                public well-being.
+            </p>
+        </div>
+        <div>
+            <p class="p-text">
+                <span class="sub-title">B. Global Perspective View on PM2.5</span><br>
+                A global perspective on PM2.5 levels is vital to comprehend
+                the scale and variations in air quality across different regions.
+                By monitoring PM2.5 on a global scale, we can identify
+                trends, sources of pollution, and areas where air quality may be
+                particularly hazardous. This global view often involves the use
+                of satellites and international air quality monitoring networks.
+                It helps nations collaborate in addressing transboundary air
+                pollution and sharing information to mitigate the impact of
+                airborne particles on a global scale.
+            </p>
+        </div>
+        <div>
+            <p class="p-text">
+                <span class="sub-title">C. Local Perspective View for Thailand</span><br>
+                On a local level, such as within a country like Thailand,
+                monitoring PM2.5 is crucial for assessing the immediate air
+                quality conditions that people are exposed to. Local monitoring
+                networks, government agencies, and environmental organizations
+                collect data on PM2.5 levels to provide real-time
+                information to citizens. This local perspective helps individuals
+                make informed decisions about outdoor activities, and it assists
+                policymakers in implementing measures to improve air quality
+                and protect public health.
+            </p>
+        </div>
+    </div>
+    <!-- why -->
+    <div id="importance-of-pm25">
+        <p-header>
+            <h2 class="hsub"> Why this project is important? </h2>
+        </p-header>
+        <div>
+            <p class="p-text">
+                We implement this project for the following reasons:
+            <ol>
+                <li>
+                    <!-- <h6>Protecting Public Health:</h6> -->
+                    <p class="ol-li-p-text">
+                        <b>Protecting Public Health: </b>
+                        PM2.5 particles are so small that they can penetrate deep into the respiratory system,
+                        posing significant health risks. PM2.5 projects aim to
+                        reduce exposure to these particles and thereby protect the health of communities. High PM2.5
+                        levels have been
+                        linked to respiratory diseases, cardiovascular issues, and
+                        even premature death.
+                    </p>
+                </li>
+                <li>
+                    <!-- <h4></h4> -->
+                    <p class="ol-li-p-text">
+                        <b> Environmental Impact: </b>
+                        PM2.5 particles can also harm
+                        the environment. They can contribute to smog formation,
+                        damage ecosystems, and affect water quality. PM2.5
+                        projects seek to reduce these environmental impacts.
+                    </p>
+                </li>
+                <li>
+                    <!-- <h4></h4> -->
+                    <p class="ol-li-p-text">
+                        <b> Policy and Regulation: </b>
+                        Monitoring PM2.5 is essential
+                        for setting air quality standards and regulations. Governments and regulatory agencies use PM2.5
+                        data to
+                        implement measures to limit emissions from various sources.
+                    </p>
+                </li>
+                <li>
+                    <!-- <h4>Awareness and Education:</h4> -->
+                    <p class="ol-li-p-text">
+                        <b>Awareness and Education: </b>
+                        PM2.5 projects help raise
+                        public awareness about air quality issues. They encourage people to
+                        take action to reduce their own contributions to air pollution and to advocate for cleaner air.
+                    </p>
+                </li>
+            </ol>
+            </p>
+        </div>
+    </div>
+    <div>
+        <div>
+            <p-header>
+                <h2 class="hsub">Summary</h2>
+            </p-header>
+        </div>
+        <div>
+            <p class="p-text">
+                In summary, PM2.5 projects serve the vital purpose of
+                both human health and the environment. They
+                provide essential information for informed decision-making,
+                regulation, and action at both the local and global levels.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer section -->
+    <footer style="background-color: #333; color: #fff; text-align: center; padding: 10px;">
+        &copy; 2023 CP for DSAI Class Asian Institute of Technology. All rights reserved.
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+/* Add some basic CSS for styling */
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        header {
+            background-color: #08454c;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        /* p-header {
+            color: #444;
+            text-align: center;
+            padding: 10px 0;
+        } 
+
+        nav {
+            background-color: #115e67;
+            text-align: center;
+        }
+
+        ul.menu-bar {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul.menu-bar li {
+            display: inline;
+            margin: 0 15px;
+            line-height: 40px;
+        }
+
+        ul.menu-bar li.active {
+            background-color: #FFD700; /* Highlight color */
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .sub-title {
+            font-style: italic;
+            text-align: center;
+        }
+
+        /* Style for paragraphs with class "p-text" 
+        .p-text {
+            text-align: justify;
+            padding: 20px;
+        }
+
+        .p-li {
+            text-align: justify;
+            padding: 0 40px;
+        }
+
+        .ol-li-p-text {
+            text-align: justify;
+            padding-right: 20px;
+        }
