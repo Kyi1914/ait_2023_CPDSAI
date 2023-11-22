@@ -1,6 +1,7 @@
 # PM2.5 Prediction
 [2023 - AIT] Computer Programming for DSAI project
-Group 7 : st124087, st12
+Group 7: st124087, st123300
+Link to access AWS: http://ec2-3-91-92-78.compute-1.amazonaws.com:8080/
 
 # Brief Introduction about PM2.5 Project
 
