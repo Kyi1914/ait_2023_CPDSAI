@@ -6,3 +6,7 @@ This repository contains resources, code examples, and notes for the subject "Co
 
 ## Introduction
 This subject covers the fundamental concepts and techniques of computer programming as they apply to data science. Topics include data manipulation, analysis, visualization, and machine learning.
+
+## Project
+As a project, my colleague and I worked on PM2.5 analysis. You can find the details in the Project folder.”
+Feel free to adjust it if needed! If there’s anything else you’d like to add or change, just let me know.
